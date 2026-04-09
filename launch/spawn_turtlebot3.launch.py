@@ -26,7 +26,7 @@ def generate_launch_description():
     TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
     model_folder = 'turtlebot3_' + TURTLEBOT3_MODEL
     urdf_path = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo'),
+        get_package_share_directory('ecte477'),
         'models',
         model_folder,
         'model.sdf'
@@ -70,7 +70,7 @@ def generate_launch_description():
     )
 
     bridge_params = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo'),
+        get_package_share_directory('ecte477'),
         'params',
         model_folder+'_bridge.yaml'
     )
@@ -89,9 +89,10 @@ def generate_launch_description():
     start_gazebo_ros_image_bridge_cmd = Node(
         package='ros_gz_image',
         executable='image_bridge',
-        arguments=['/camera/image_raw'],
+        arguments=['/camera/image_raw', '/camera/depth'],
         output='screen',
     )
+
     ld = LaunchDescription()
 
     # Declare the launch options
